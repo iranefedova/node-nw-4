@@ -7,11 +7,10 @@ const output = fs.createWriteStream("output.txt");
 
 const hash = crypto.createHash('md5');
 
-input
-    .pipe(hash)
+let first = input.pipe(hash);
+first    
     .pipe(output);
-input
-    .pipe(hash)
+first
     .pipe(process.stdout);
 
 // Часть 2
@@ -34,10 +33,8 @@ class CTransform extends Transform {
   }
 }
 
-//const tr = new CTransform();
-input2
-    .pipe(new CTransform())
+let second = input2.pipe(new CTransform());
+second
     .pipe(process.stdout);
-input2
-    .pipe(new CTransform())
+second
     .pipe(output2);
